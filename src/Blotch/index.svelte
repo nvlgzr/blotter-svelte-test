@@ -1,5 +1,5 @@
 <script>
-  // import Blotter from "./blotter.min.js";
+  import { onMount } from "svelte";
   console.log(Blotter);
 
   export let text = "Blotter Default Text ✒️";
@@ -15,7 +15,8 @@
   $: texts = new Blotter.Text(text, config);
   $: blotter = new Blotter(material, { texts });
   $: scope = blotter.forText(texts);
-  $: if (elem) scope.appendTo(elem);
+
+  onMount(() => scope.appendTo(elem));
 </script>
 
 <div bind:this={elem} />
